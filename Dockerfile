@@ -8,8 +8,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /opt/app
 
-# 2. deps python (root)
-RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && \
+# 2. deps python (root) — pip a jour D'ABORD (corrige le wheel typing_extensions)
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && \
     pip install --no-cache-dir trimesh==4.8.2 "numpy>=1.24,<2.3" "scipy>=1.10" "PyYAML>=6.0"
 
 # 3. code (root) — model_test.py inclus
